@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Rapport DHCP</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1,
+        h2 {
+            color: #333333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid #000000;
+        }
+
+        th,
+        td {
+            padding: 8px 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .summary {
+            margin: 2px 0;
+            /* Réduit l'espacement vertical */
+        }
+
+        .summarybold {
+            font-weight: bold;
+            margin: 2px 0;
+            /* Réduit l'espacement vertical */
+        }
+
+        .indent {
+            margin-left: 20px;
+            /* Décalage similaire à une tabulation */
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Détection des IPs suspectes (DHCP) du <!---DATE--></h1>
+
+    <p class="summarybold">
+        <b>Durée d'exécution :</b> <!--DURATION-->
+        <br>
+        <b>Nombre d'appareils scannés :</b> <!--TOTAL_HOSTS-->
+    </p>
+
+    <h2 style="color:red">Liste des appareils non présents dans l'AD et avec un bail DHCP actif (<!--HOST_COUNT-->)</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Étendue</th>
+                <th>Adresse IP</th>
+                <th>Nom de l'hôte</th>
+                <th>Adresse MAC</th>
+                <th>Première détection</th>
+                <th>Fin du bail DHCP</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!--DATA_ROWS-->
+        </tbody>
+    </table>
+
+    <h2 style="color:orange">Liste des appareils non présents dans l'AD et avec un bail DHCP inactifs (<!--HOST_COUNT_INACTIVE-->)</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Étendue</th>
+                <th>Adresse IP</th>
+                <th>Nom de l'hôte</th>
+                <th>Adresse MAC</th>
+                <th>Première détection</th>
+                <th>Fin du bail DHCP</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!--DATA_ROWS_INACTIVES-->
+        </tbody>
+    </table>
+
+    <p>Pour supprimer un élément non légitime de la liste, ajoutez-le en tant qu'« Ordinateur » dans l'AD*.</p>
+    <p>*Il est conseillé de créer une OU spécifique pour ces équipements.</p>
+    <br>
+    <p class="summarybold">Conseils d'investigation pour les machines indésirables
+        <br>
+    <p class="summary indent"><b>1.</b> Localisation de l'adresse IP via les plages IP
+        <br>
+        <b>2.</b> Rechercher l'adresse MAC sur les switches du site.
+    </p>
+    </p>
+</body>
+
+</html>

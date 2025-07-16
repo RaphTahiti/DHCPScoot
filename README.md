@@ -3,7 +3,6 @@
 ![PowerShell](https://img.shields.io/badge/PowerShell-0078d7?style=for-the-badge&logo=powershell&logoColor=white)
 ![Platform](https://img.shields.io/badge/Platform-Windows%20Server-blue?style=for-the-badge)
 ![Status](https://img.shields.io/badge/Status-Active-success?style=for-the-badge)
-![License](https://img.shields.io/badge/License-Private-lightgrey?style=for-the-badge)
 
 ## 📌 Description
 

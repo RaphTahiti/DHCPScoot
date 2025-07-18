@@ -29,7 +29,7 @@ Dans un environnement professionnel sans **NAC** (*Network Access Control*), nou
 
 - Serveur **DHCP** sous Windows Server  
 - Annuaire **Active Directory** Windows  
-- Compte avec droits **Administrateur** sur le serveur DHCP et l’AD  
+- Compte avec droits **lecture seule** sur le serveur DHCP et l’AD  
 - **PowerShell 5.1 ou plus récent**
 
 ---

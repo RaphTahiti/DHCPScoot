@@ -7,6 +7,8 @@
 
 ---
 
+# 🇫🇷 Français
+
 ## 📌 Description
 
 **DHCPScoop** est un outil PowerShell destiné aux administrateurs systèmes pour détecter les appareils connectés à un réseau informatique sans autorisation. Il génère un rapport clair des postes présents mais absents de l'inventaire ou non conformes aux règles d’accès.
@@ -47,8 +49,8 @@ Set-ExecutionPolicy RemoteSigned -Scope Process
 ```
 
 ### 3. Configuration
-Personnalisez l’exécution avec des paramètres dans les fichiers "initialisation.ps1" et "mail.ps1"
-Personnalisez les destinataires dans "recipients_emails.json"
+Personnalisez l’exécution avec des paramètres dans les fichiers `initialisation.ps1` et `mail.ps1`.  
+Personnalisez les destinataires dans `recipients_emails.json`.
 
 ### 4. Exécution du script
 Lancez simplement :  
@@ -58,13 +60,79 @@ Lancez simplement :
 
 ### 5. Automatisation (optionnelle)
 Pour un suivi régulier, créez une **tâche planifiée Windows** qui exécute :  
-```
+"""
 programme : C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
-argument : -Command "& chemin vers execute.ps1"
-```
+argument : -Command "& chemin\vers\execute.ps1"
+"""
 
 ---
 
 ## 👤 Auteur
+
+- **Raphaël**
+
+---
+
+# 🇬🇧 English
+
+## 📌 Description
+
+**DHCPScoop** is a PowerShell tool designed for system administrators to detect unauthorized devices connected to a corporate network. It generates a clear report of hosts that are present but missing from the inventory or non-compliant with access rules.
+
+---
+
+### 🎯 Context
+
+In a professional environment without **NAC** (*Network Access Control*), we identified the presence of external machines on the network. DHCPScoop is an initiative to quickly obtain a reliable overview of active endpoints without complex deployment.
+
+---
+
+## ⚙️ Technologies
+
+- PowerShell
+
+---
+
+## ✅ Requirements
+
+- **DHCP** server running on Windows Server  
+- Windows **Active Directory**  
+- Account with **read-only** rights on the DHCP server and AD  
+- **PowerShell 5.1 or later**
+
+---
+
+## 🚀 Installation & Execution
+
+### 1. Download
+Get the script from the Git repository.  
+
+### 2. Environment Setup
+Open **PowerShell as Administrator**.  
+If needed, allow script execution:  
+```
+Set-ExecutionPolicy RemoteSigned -Scope Process
+```
+
+### 3. Configuration
+Customize the execution parameters in `initialisation.ps1` and `mail.ps1`.  
+Set the recipients in `recipients_emails.json`.
+
+### 4. Run the Script
+Simply execute:  
+```
+.\execute.ps1
+```
+
+### 5. Automation (Optional)
+For regular monitoring, create a **Windows Scheduled Task** to run:  
+"""
+program : C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
+argument : -Command "& path\to\execute.ps1"
+"""
+
+---
+
+## 👤 Author
 
 - **Raphaël**

@@ -39,8 +39,6 @@ Dans un environnement professionnel sans **NAC** (*Network Access Control*), nou
 ### 1. Téléchargement
 Récupérez le script depuis le dépôt Git.  
 
----
-
 ### 2. Préparation de l'environnement
 Ouvrez **PowerShell en mode administrateur**.  
 Si nécessaire, autorisez l'exécution des scripts :  
@@ -48,21 +46,15 @@ Si nécessaire, autorisez l'exécution des scripts :
 Set-ExecutionPolicy RemoteSigned -Scope Process
 ```
 
----
-
 ### 3. Configuration
 Personnalisez l’exécution avec des paramètres dans les fichiers "initialisation.ps1" et "mail.ps1"
 Personnalisez les destinataires dans "recipients_emails.json"
-
----
 
 ### 4. Exécution du script
 Lancez simplement :  
 ```
 .\execute.ps1
 ```
-
----
 
 ### 5. Automatisation (optionnelle)
 Pour un suivi régulier, créez une **tâche planifiée Windows** qui exécute :  

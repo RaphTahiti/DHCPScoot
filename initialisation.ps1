@@ -3,12 +3,19 @@ $PSDefaultParameterValues['*:Encoding'] = 'utf8'
 # Importer les modules nécessaires
 Import-Module DHCPServer
 Import-Module ActiveDirectory
+Import-Module ImportExcel
 
 # Définir les variables de serveur et de scope & fichier de stockage
 $DHCPServer = Get-DhcpServerInDC | ForEach-Object { $_.DnsName } # Récupération automatique des serveurs DHCP
 $ScopeId = @() # Liste des réseaux à exclure
 $logDHCP = "$scriptpath\donnees.json" # données du DHCP, avec en plus le premiervu qui permet de de garder une trace même avec un bail expiré
-$HTMLreport = "$scriptpath\Report\dhcp_lease_report_$(Get-Date -Format 'yyyy-MM-dd_HH-mm-ss').html"
+
+# Timestamp commun pour les rapports + dossier Report
+$ReportTimestamp = Get-Date -Format 'yyyy-MM-dd_HH-mm-ss'
+$ReportDir = Join-Path $scriptpath 'Report'
+New-Item -ItemType Directory -Path $ReportDir -Force | Out-Null
+$HTMLreport = Join-Path $ReportDir "dhcp_lease_report_$ReportTimestamp.html"
+$ExcelReport = Join-Path $ReportDir "dhcp_lease_report_$ReportTimestamp.xlsx"
 $templatePath = "$scriptpath\template.html"
 $recipients = "$scriptpath\recipients_emails.json"
 

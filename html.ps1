@@ -28,7 +28,7 @@ $InactiveTableRows = foreach ($Appareil in $AppareilsInactives) {
 # Calculer la durée d'exécution du script
 $ScriptEndTime = Get-Date
 $ExecutionDuration = New-TimeSpan -Start $ScriptStartTime -End $ScriptEndTime
-$ExecutionReadable = "$($ExecutionDuration.Minutes) min $($ExecutionDuration.Seconds) sec $($ExecutionDuration.Milliseconds) ms"
+$ExecutionReadable = "$(($ExecutionDuration.Minutes)) min $(($ExecutionDuration.Seconds)) sec $(($ExecutionDuration.Milliseconds)) ms"
 
 # Remplacer les balises dans le template
 $HTMLFinal = $HTMLTemplate `
@@ -40,7 +40,10 @@ $HTMLFinal = $HTMLTemplate `
 -replace '<!--DATA_ROWS-->', $TableRows `
 -replace '<!--DATA_ROWS_INACTIVES-->', $InactiveTableRows
 
-# Écrire le fichier HTML final
+# S'assurer que le dossier Report existe puis nettoyage des anciens fichiers
+New-Item -ItemType Directory -Path "$scriptpath\Report" -Force | Out-Null
 Remove-Item -Path "$scriptpath\Report\*" -Force -ErrorAction SilentlyContinue
+
+# Écrire le fichier HTML final
 $HTMLFinal | Out-File -FilePath $HTMLreport -Encoding utf8
 Write-Host "4- Rapport HTML genere depuis le template : $HTMLreport" -ForegroundColor Green

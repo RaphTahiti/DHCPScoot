@@ -4,6 +4,7 @@
 . "$scriptpath\dhcp.ps1"
 . "$scriptpath\filter.ps1"
 . "$scriptpath\html.ps1"
+. "$scriptpath\excel.ps1"
 . "$scriptpath\mail.ps1"
 
 

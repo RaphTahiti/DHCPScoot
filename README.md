@@ -61,8 +61,9 @@ Lancez simplement :
 ### 5. Automatisation (optionnelle)
 Pour un suivi régulier, créez une **tâche planifiée Windows** qui exécute :  
 """
-programme : C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
-argument : -Command "& chemin\vers\execute.ps1"
+programme : `C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe`
+
+argument : `-Command "& chemin\vers\execute.ps1"`
 """
 
 ---
@@ -127,8 +128,9 @@ Simply execute:
 ### 5. Automation (Optional)
 For regular monitoring, create a **Windows Scheduled Task** to run:  
 """
-program : C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
-argument : -Command "& path\to\execute.ps1"
+program : `C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe`
+
+argument : `-Command "& path\to\execute.ps1"`
 """
 
 ---
@@ -136,3 +138,4 @@ argument : -Command "& path\to\execute.ps1"
 ## 👤 Author
 
 - **Raphaël**
+

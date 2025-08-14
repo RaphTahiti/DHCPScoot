@@ -1,4 +1,4 @@
-# DHCPScoop
+# DHCPScoot
 
 ![PowerShell](https://img.shields.io/badge/PowerShell-0078d7?style=for-the-badge&logo=powershell&logoColor=white)  
 ![Platform](https://img.shields.io/badge/Platform-Windows%20Server-blue?style=for-the-badge)  
@@ -11,13 +11,13 @@
 
 ## 📌 Description
 
-**DHCPScoop** est un outil PowerShell destiné aux administrateurs systèmes pour détecter les appareils connectés à un réseau informatique sans autorisation. Il génère un rapport clair des postes présents mais absents de l'inventaire ou non conformes aux règles d’accès.
+**DHCPScoot** est un outil PowerShell destiné aux administrateurs systèmes pour détecter les appareils connectés à un réseau informatique sans autorisation. Il génère un rapport clair des postes présents mais absents de l'inventaire ou non conformes aux règles d’accès.
 
 ---
 
 ### 🎯 Contexte
 
-Dans un environnement professionnel sans **NAC** (*Network Access Control*), nous avons identifié la présence de machines externes sur le réseau. DHCPScoop est une initiative pour obtenir rapidement un état des lieux fiable des terminaux actifs sans déploiement complexe.
+Dans un environnement professionnel sans **NAC** (*Network Access Control*), nous avons identifié la présence de machines externes sur le réseau. DHCPScoot est une initiative pour obtenir rapidement un état des lieux fiable des terminaux actifs sans déploiement complexe.
 
 ---
 
@@ -79,13 +79,13 @@ argument : `-Command "& chemin\vers\execute.ps1"`
 
 ## 📌 Description
 
-**DHCPScoop** is a PowerShell tool designed for system administrators to detect unauthorized devices connected to a corporate network. It generates a clear report of hosts that are present but missing from the inventory or non-compliant with access rules.
+**DHCPScoot** is a PowerShell tool designed for system administrators to detect unauthorized devices connected to a corporate network. It generates a clear report of hosts that are present but missing from the inventory or non-compliant with access rules.
 
 ---
 
 ### 🎯 Context
 
-In a professional environment without **NAC** (*Network Access Control*), we identified the presence of external machines on the network. DHCPScoop is an initiative to quickly obtain a reliable overview of active endpoints without complex deployment.
+In a professional environment without **NAC** (*Network Access Control*), we identified the presence of external machines on the network. DHCPScoot is an initiative to quickly obtain a reliable overview of active endpoints without complex deployment.
 
 ---
 
@@ -139,5 +139,6 @@ argument : `-Command "& path\to\execute.ps1"`
 ## 👤 Author
 
 - **Raphaël**
+
 
 

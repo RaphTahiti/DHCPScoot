@@ -19,6 +19,8 @@ $ExcelReport = Join-Path $ReportDir "dhcp_lease_report_$ReportTimestamp.xlsx"
 $templatePath = "$scriptpath\template.html"
 $recipients = "$scriptpath\recipients_emails.json"
 
+$InactivityThresholdDays = 90 # Nombre de jours d'inactivité pour considérer un appareil comme inactif et le supprimer du rapport
+
 $UpdateEndpointLogs = @() # Initialiser la variable pour stocker les nouveaux appareils
 $ExistingData = @() # Initialiser la variable pour stocker les données existantes
 $TotalAppareilsScannes = 0

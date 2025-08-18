@@ -52,4 +52,9 @@ $AppareilsInactives = $ExistingData | Where-Object {
     $_.DHCPLeaseActif -eq "❌"
 } | Sort-Object { [datetime]$_.LasttView } -Descending
 
+# Supprimer les appareils inactifs depuis plus de 90 jours
+$AppareilsInactives = $AppareilsInactives | Where-Object {
+    [datetime]$_.LasttView -ge (Get-Date).AddDays(-$InactivityThresholdDays)
+}
+
 Write-Host "3- Filtrage terminée." -ForegroundColor Green

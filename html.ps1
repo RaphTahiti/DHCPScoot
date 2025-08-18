@@ -38,7 +38,8 @@ $HTMLFinal = $HTMLTemplate `
 -replace '<!--HOST_COUNT_INACTIVE-->', $AppareilsInactives.Count `
 -replace '<!--DURATION-->', $ExecutionReadable `
 -replace '<!--DATA_ROWS-->', $TableRows `
--replace '<!--DATA_ROWS_INACTIVES-->', $InactiveTableRows
+-replace '<!--DATA_ROWS_INACTIVES-->', $InactiveTableRows `
+-replace '<!--InactivityThresholdDays-->', $InactivityThresholdDays
 
 # S'assurer que le dossier Report existe puis nettoyage des anciens fichiers
 New-Item -ItemType Directory -Path "$scriptpath\Report" -Force | Out-Null

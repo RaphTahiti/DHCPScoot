@@ -9,6 +9,7 @@ $TableRows = foreach ($Appareil in $AppareilsActifs) {
     <td>$($Appareil.HostName.Trim())</td>
     <td>$($Appareil.MACAdresse.Trim())</td>
     <td>$($Appareil.FirstView.Trim())</td>
+    <td>$($Appareil.ArriveeReseau)</td>
     <td>$($Appareil.LasttView.Trim())</td>
     </tr>"
 }
@@ -21,6 +22,7 @@ $InactiveTableRows = foreach ($Appareil in $AppareilsInactives) {
     <td>$($Appareil.HostName.Trim())</td>
     <td>$($Appareil.MACAdresse.Trim())</td>
     <td>$($Appareil.FirstView.Trim())</td>
+    <td>$($Appareil.ArriveeReseau)</td>
     <td>$($Appareil.LasttView.Trim())</td>
     </tr>"
 }

@@ -10,6 +10,7 @@ foreach ($Server in $DHCPServer) {
         # Récupérer les baux DHCP pour le scope actuel
         $Scope = $ScopeObj.ScopeId.IPAddressToString
         $ScopeName = $ScopeObj.Name
+        $LeaseTime = $ScopeObj.LeaseDuration
         $DhcpBails = Get-DhcpServerv4Lease -ComputerName $Server -ScopeId $Scope
 
         # Vérifier si le bail est actif
@@ -23,6 +24,12 @@ foreach ($Server in $DHCPServer) {
             $Bail.HostName.Split('.')[0]
             } else {
                 "Null"
+            }
+            # Calculer l'heure d'arrivée sur le réseau
+            $ArriveeReseau = if ($Bail.LeaseExpiryTime -and $LeaseTime) {
+                ($Bail.LeaseExpiryTime - $LeaseTime).ToString('yyyy-MM-dd HH:mm:ss')
+            } else {
+                $null
             }
 
             # Vérifier si l'appareil est présent dans l'AD
@@ -39,7 +46,7 @@ foreach ($Server in $DHCPServer) {
 
             # Si l'appareil n'existe pas dans le log, on l'ajoute
             if (-not $AppareilExistant) {
-                $FirstView = if ($Bail.AllocatedAt) { $Bail.AllocatedAt.ToString('yyyy-MM-dd HH:mm:ss') } else { (Get-Date).ToString('yyyy-MM-dd HH:mm:ss') }
+                $FirstView = if ($Bail.AllocatedAt) { $Bail.AllocatedAt.ToString('yyyy-MM-dd') } else { (Get-Date).ToString('yyyy-MM-dd') }
                 $DHCPLeaseActifBool = $Bail.LeaseExpiryTime -gt (Get-Date)
                 $LasttViewDate = if ($DHCPLeaseActifBool) { $Bail.LeaseExpiryTime } else { Get-Date }
 
@@ -49,6 +56,7 @@ foreach ($Server in $DHCPServer) {
                     HostName       = $HostName
                     MACAdresse     = $AdresseMac
                     FirstView      = $FirstView
+                    ArriveeReseau  = $ArriveeReseau
                     LasttView      = $LasttViewDate.ToString('yyyy-MM-dd HH:mm:ss')
                     DHCPLeaseActif = if ($DHCPLeaseActifBool) { "✅" } else { "❌" }
                     ScopeName      = $ScopeName
@@ -66,6 +74,12 @@ foreach ($Server in $DHCPServer) {
                 # Si l'appareil n'a pas de FirstView, on le définit
                 if (-not $AppareilExistant.FirstView) {
                     $AppareilExistant.FirstView = if ($Bail.AllocatedAt) { $Bail.AllocatedAt.ToString('yyyy-MM-dd HH:mm:ss') } else { (Get-Date).ToString('yyyy-MM-dd HH:mm:ss') }
+                }
+                # Mettre à jour la date d'arrivée sur le réseau (début du bail) à chaque passage
+                $AppareilExistant.ArriveeReseau = if ($Bail.LeaseExpiryTime -and $LeaseTime) {
+                    ($Bail.LeaseExpiryTime - $LeaseTime).ToString('yyyy-MM-dd HH:mm:ss')
+                } else {
+                    $null
                 }
 
                 # Vérifier si le bail est actif

@@ -3,10 +3,40 @@
 # S’assurer que le dossier Report existe
 New-Item -ItemType Directory -Path "$scriptpath\Report" -Force | Out-Null
 
-# Préparer les données et l’ordre des colonnes
-$cols = @('ScopeName','IPAdresse','HostName','MACAdresse','FirstView','LasttView')
-$actifs   = $AppareilsActifs    | Select-Object $cols
-$inactifs = $AppareilsInactives | Select-Object $cols
+
+# Vérification du module ImportExcel
+if (-not (Get-Module -ListAvailable -Name ImportExcel)) {
+    Write-Host "ERREUR : Le module ImportExcel n'est pas installé !" -ForegroundColor Red
+    return
+}
+
+# Vérification des données
+if (-not $AppareilsActifs -or $AppareilsActifs.Count -eq 0) {
+    Write-Host "ERREUR : Aucun appareil actif trouvé !" -ForegroundColor Red
+}
+if (-not $AppareilsInactives -or $AppareilsInactives.Count -eq 0) {
+    Write-Host "ERREUR : Aucun appareil inactif trouvé !" -ForegroundColor Red
+}
+
+
+# Sélection avec noms français (syntaxe compatible PowerShell)
+$actifs = $AppareilsActifs | Select-Object `
+    @{Name='Etendue';Expression={$_.ScopeName}},
+    @{Name='Adresse IP';Expression={$_.IPAdresse}},
+    @{Name="Nom de l'hote";Expression={$_.HostName}},
+    @{Name='Adresse MAC';Expression={$_.MACAdresse}},
+    @{Name='Premiere detection';Expression={$_.FirstView}},
+    @{Name='Debut du bail DHCP';Expression={$_.ArriveeReseau}},
+    @{Name='Fin du bail DHCP';Expression={$_.LasttView}}
+
+$inactifs = $AppareilsInactives | Select-Object `
+    @{Name='Etendue';Expression={$_.ScopeName}},
+    @{Name='Adresse IP';Expression={$_.IPAdresse}},
+    @{Name="Nom de l'hote";Expression={$_.HostName}},
+    @{Name='Adresse MAC';Expression={$_.MACAdresse}},
+    @{Name='Premiere detection';Expression={$_.FirstView}},
+    @{Name='Debut du bail DHCP';Expression={$_.ArriveeReseau}},
+    @{Name='Fin du bail DHCP';Expression={$_.LasttView}}
 
 try {
     # Feuille Actifs
